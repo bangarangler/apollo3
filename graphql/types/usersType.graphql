@@ -1,0 +1,41 @@
+type InputError {
+  field: String!
+  message: String!
+}
+
+# type GeneralError {
+#   error: String!
+# }
+
+type User {
+  _id: ID!
+  email: String!
+  username: String!
+}
+
+# type Token {
+#   token: String!
+# }
+
+type LoginOrRegRes {
+  errors: InputError
+  error: String
+  token: String
+}
+
+input UserRegInput {
+  username: String!
+  email: String!
+  password: String!
+  confirmPassword: String!
+}
+
+type Query {
+  user(_id: ID!): User!
+  users: [User]!
+  # me: UserRes!
+}
+
+type Mutation {
+  register(options: UserRegInput!): LoginOrRegRes!
+}
